@@ -1,0 +1,98 @@
+<body>
+    <div class="mainpage">
+        <div class="navsidebar">
+            <div class="list_edit">
+                <div class="edit_post ">
+                    <h5>Edit Posts</h5>
+                    <ul class="nested_actions">
+                        <li><a [routerLink]="['/admin/posts','create']">Create Post</a></li>
+                        <li><a [routerLink]="['/admin/posts','manage']">Manage Post</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="list_edit">
+                <div class="edit_user">
+                    <h5>Edit User</h5>
+                    <ul class="nested_actions">
+                        <li><a [routerLink]="['/admin/user','create']">Create User</a></li>
+                        <li><a [routerLink]="['/admin/user','manage']">Manage User</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="list_edit">
+                <div class="edit_category">
+                    <h5>Edit Category</h5>
+                    <ul class="nested_actions">
+                        <li><a [routerLink]="['/admin/category','create']">Create Category</a></li>
+                        <li><a [routerLink]="['/admin/category','manage']">Manage Category</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Page related functions -->
+
+
+        <div id="postcreation" [class.hidden]="hideForm" novalidate>
+            <div class="section_heading">
+                <h3>Create User Here </h3>
+
+            </div>
+            <div class="div_textarea">
+                <form id="post_form" #userForm="ngForm" (ngSubmit)="onAddUser(userForm" )>
+                    <label for="username">UserName</label>
+                    <input id="username" name="username" type="text" required ngModel>
+                    <label for="password">Password</label>
+                    <inout id="password" name="password" type="password" required ngModel>
+                        <label> User Type</label>
+                        <select id="user_options" name="user_type" ngModel>
+                            <option value="select" selected="">Select</option>
+                            <option value="admin">Admin</option>
+                            <option value="editor">Editor</option>
+                            <option value="author">Author</option>
+                        </select>
+                        <label for="Interests">Interests</label>
+                        <input type="text" name="interests" id="input_interests"
+                            placeholder="Enter Comma Separated Interests" ngModel>
+                        <input type="submit" name="submit_btn" value="Submit Data" id="submit_btn"
+                            [disabled]="!userForm.valid" >
+                </form>
+            </div>
+
+        </div>
+
+        <div id="postmanage" [class.hidden]="hideTable">
+            <div class="section_heading">
+                <h3>Manage User Here </h3>
+            </div>
+            <div class="div_textarea">
+                <table id="post_table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>User Type</th>
+                        <th>Created On</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr *ngFor='let user of users'>
+                        <td>{{user.id}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.user_type}}</td>
+                        <td>{{user.arrival_tm}}</td>
+                        <td><a [routerLink]="['/deleteUser']">Delete</a></td>
+                    </tr>
+                </table>
+
+                <div class="load-btn">
+                    <form id="load-articles" action="/" method="post">
+                        <button class="btn btn-loadmore" type="submit"><i class="fas fa-angle-double-down"></i></button>
+                    </form>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</body>

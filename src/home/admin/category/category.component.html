@@ -1,0 +1,87 @@
+<body>
+    <div class="mainpage">
+    <div class="navsidebar">
+        <div class="list_edit">
+            <div class="edit_post ">
+                <h5>Edit Posts</h5>
+                <ul class="nested_actions">
+                    <li><a [routerLink]="['/admin/posts','create']">Create Post</a></li>
+                    <li><a [routerLink]="['/admin/posts','manage']">Manage Post</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="list_edit">
+            <div class="edit_user">
+                <h5>Edit User</h5>
+                <ul class="nested_actions">
+                    <li><a [routerLink]="['/admin/user','create']">Create User</a></li>
+                    <li><a [routerLink]="['/admin/user','manage']">Manage User</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="list_edit">
+            <div class="edit_category">
+                <h5>Edit Category</h5>
+                <ul class="nested_actions">
+                    <li><a [routerLink]="['/admin/category','create']">Create Category</a></li>
+                    <li><a [routerLink]="['/admin/category','manage']">Manage Category</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Page related functions -->
+
+
+    <div id="postcreation" [class.hidden]="hideForm">
+        <div class="section_heading">
+            <h3>Create Category Here </h3>
+
+        </div>
+        <div class="div_textarea">
+            <form id="post_form" #categoryForm = "ngForm" (ngSubmit)="onCategorySubmit(categoryForm)"  novalidate>
+                <label>Category for Post</label>
+                <input type="text" name="category_name" id="input_head" required ngModel>
+                <label>Keywords for Category</label>
+                <input type="text" name="keywords" placehoder="Comma Separated Values" id="keywords" pattern = "[a-zA-Z]{1}(,[a-zA-Z])*$"ngmodel>
+                <input type="submit" name="submit_btn" value="Submit Data" id="submit_btn"  [disabled]="!categoryForm.valid">
+            </form>
+        </div>
+
+    </div>
+
+    <div id="postmanage" [class.hidden]="hideTable">
+        <div class="section_heading">
+            <h3>Manage Category Here </h3>
+        </div>
+
+        <div class="div_textarea">
+            <table id="post_table">
+                <tr>
+                    <th>Category_ID</th>
+                    <th>CategoryName</th>
+                    <th>Keywords</th>
+                    <th>Created On</th>
+                    <th>Action</th>
+                </tr>
+                <tr *ngFor = 'let category of categories'>
+                    <td>{{category.categry_id}}</td>
+                    <td>{{category.category_name}}</td>
+                    <td>{{category.keywords}}</td>
+                    <td>{{category.created_tm}}</td>
+                    <td><a [routerLink]="['/deletecategory']">Delete</a></td>
+                </tr>
+            </table>
+
+            <div class="load-btn">
+                <form id="load-articles" action="/" method="post">
+                    <button class="btn btn-loadmore" type="submit"><i class="fas fa-angle-double-down"></i></button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</body>

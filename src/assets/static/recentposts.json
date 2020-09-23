@@ -1,0 +1,42 @@
+[
+    {
+        "pid": 5,
+        "heading": "Firefox fixes Data Leakage in New Security update",
+        "author": "Prateek bhardwaj",
+        "relatedtxt": "Organisational users of Firefox who are conservative about new software features, the ESR version is an excellent compromise...",
+        "created_tm": 1596473636240,
+        "imagesrc": "assets/images/postimg_05.png"
+    },
+    {
+        "pid": 4,
+        "heading": "Apple sends out 11 security alerts - get your fixes now!",
+        "author": "Prateek bhardwaj",
+        "relatedtxt": "Most Recent version of iOS is 13.5, and it was officially announced on Apple main Security update page on 20 May 2020...",
+        "created_tm": 1596473259748,
+        "imagesrc": "assets/images/postimg_04.png"
+    },
+    {
+        "pid": 3,
+        "heading": "7 VPNs that leaked their logs",
+        "author": "Prateek bhardwaj",
+        "relatedtxt": "IT is a crowded market with companies advertising online, on TV and even in print media to compete for your consumer dollars...",
+        "created_tm": 1596472893310,
+        "imagesrc": "assets/images/postimg_03.jpg"
+    },
+    {
+        "pid": 2,
+        "heading": "Servers at risk from BootHole bug - what you need to know ??",
+        "author": "Prateek bhardwaj",
+        "relatedtxt": "This month bug with an impressive name is called BootHole, and its logo shows a boot with a worm sticking out of a hole in the toecap...",
+        "created_tm": 1596472411731,
+        "imagesrc": "assets/images/postimg_02.png"
+    },
+    {
+        "pid": 1,
+        "heading": "Twitter hack - three suspects charged in the US",
+        "author": "Prateek bhardwaj",
+        "relatedtxt": "Account Hackers of Twitter Famous Personalities Arrested in US. Were Demanding Cryptocurrency for ransome ...",
+        "created_tm": 1596464466683,
+        "imagesrc": "assets/images/postimg_01.jpg"
+    }
+]

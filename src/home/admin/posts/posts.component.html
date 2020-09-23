@@ -1,0 +1,105 @@
+<body>
+    <div class="mainpage">
+        <div class="navsidebar">
+            <div class="list_edit">
+                <div class="edit_post ">
+                    <h5>Edit Posts</h5>
+                    <ul class="nested_actions">
+                        <li><a [routerLink]="['/admin/posts','create']">Create Post</a></li>
+                        <li><a [routerLink]="['/admin/posts','manage']">Manage Post</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="list_edit">
+                <div class="edit_user">
+                    <h5>Edit User</h5>
+                    <ul class="nested_actions">
+                        <li><a [routerLink]="['/admin/user','create']">Create User</a></li>
+                        <li><a [routerLink]="['/admin/user','manage']">Manage User</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="list_edit">
+                <div class="edit_category">
+                    <h5>Edit Category</h5>
+                    <ul class="nested_actions">
+                        <li><a [routerLink]="['/admin/category','create']">Create Category</a></li>
+                        <li><a [routerLink]="['/admin/category','manage']">Manage Category</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Page related functions -->
+
+
+        <div id="postcreation" [class.hidden]="hideForm">
+            <div class="section_heading">
+                <h3>Create Post Here </h3>
+
+            </div>
+            <div class="div_textarea">
+                <form id="post_form" #postForm="ngForm" (ngSubmit)="onPostDataSubmit(postForm)" novalidate>
+                    <label> Heading for Post</label>
+                    <input type="text" name="post_heading" id="input_head" required ngModel>
+                    <label> Post Author</label>
+                    <input type="text" name="author" id="input_name" required ngModel>
+                    <label>Content for Post</label>
+                    <textarea class="posttext" rows="4"  name="post_content" placeholder="Write something here..." ngModel></textarea>
+                    <label>Image for Post</label>
+                    <input type="file" name="post_image" accept = "image/*" id="input_img" (change) = "onfileselect($event)" ngModel>
+                    <label for="blog_category">Select Categories for Blog</label>
+                    <select id="category_options" name="category_name" ngModel>
+                        <option value="select" selected>Select One Category</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="whatsapp">whatsapp</option>
+                        <option value="pchacks">PC Hacks</option>
+                        <option value="socialhacks">Social Hacks</option>
+                        <option value="mobilehacks">Mobile Hacks</option>
+                        <option value="oshacks">OS Hacks</option>
+                        <option value="Miscellaneous">Miscellaneous</option>
+                        <option value="Twitter">Twitter</option>
+                        <option value="networksec">Network Security</option>
+                    </select>
+                    <input type="submit" name="submit_btn" value="Submit Data" id="submit_btn"  [disabled]="!userForm.valid" >
+                </form>
+            </div>
+
+
+        </div>
+
+        <div id="postmanage" [class.hidden]="hideTable">
+            <div class="section_heading">
+                <h3>Manage Post Here </h3>
+            </div>
+
+            <div class="div_textarea">
+                <table id="post_table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Post_Heading</th>
+                        <th>Author</th>
+                        <th>Created On</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr *ngFor = 'let post of posts'>
+                        <td>{{post.post_id}}</td>
+                        <td>{{ppst.heading}}</td>
+                        <td>{{post.author}}</td>
+                        <td>{{post.created_tm}}</td>
+                        <td><a [routerLink] = "['/deletePosts']">Delete</a></td>
+                    </tr>
+                </table>
+
+                <div class="load-btn">
+                    <form id="load-articles" action="/" method="post">
+                        <button class="btn btn-loadmore" type="submit"><i class="fas fa-angle-double-down"></i></button>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</body>

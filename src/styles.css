@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    box-sizing: border-box;
+ }
+html , body{
+    width:100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    font-family:Trebuchet MS, sans-serif;
+    background: #e4e4e4;
+   }
+   
+.clearfix::after {
+       content: '';
+       display:block;
+       clear:both;	
+   }

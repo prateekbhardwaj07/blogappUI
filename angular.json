@@ -19,14 +19,23 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
+            "allowedCommonJsDependencies": [
+              "lodash"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/slick-carousel/slick/slick.scss",
+              "node_modules/slick-carousel/slick/slick-theme.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/scripts.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/slick-carousel/slick/slick.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -119,6 +128,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "TestApp"
+    }
+  },
+  "defaultProject": "TestApp",
+  "cli": {
+    "analytics": "794c0b99-f53a-4c3c-bd45-8d0fdfd363d0"
+  }
 }

@@ -1,0 +1,94 @@
+
+	<div class="gridfordash">
+		<div class="profiledash">
+			<div class="profilehead"><h4>Profile Details </h4></div>
+			<div class="profilecard">	
+			  	<div class="picturediv">
+			    	<img src="assets/images/MyPic.jpg" />
+			  	</div>
+				<div class="profiledetails">
+					  	<form action="/blogapp/editdetail" id="detailsform" method="post">
+							<div>
+								<label>Username</label>
+								<input type="text" name="username" class="text-input hideborder" value = "Prateek bhardwaj" readonly="true" />
+								<div class="editbtn"><a [routerLink]="['/dashuser']" id="editlink" class="showAnchor">Add/Edit</a>
+									<a [routerLink]="['/dashuser']"id="submitlink" class="hideAnchor">Submit</a></div>
+							</div>
+							<div>
+								<label>Role</label>
+								<input type="text"  name="userrole" class="text-input hideborder" value = "Website Admin" readonly="true" />
+								<div class="editbtn"><a [routerLink]="['/dashuser']" id="editlink" class="showAnchor">Add/Edit</a>
+									<a [routerLink]="['/dashuser']" id="submitlink" class="hideAnchor">Submit</a></div>
+							</div>
+							<div>
+								<label>First Arrived On</label>
+								<input type="text"  name="firstarrival" class="text-input hideborder" value = "06-Apr-2020 " readonly="true" />
+								<div class="editbtn"><a [routerLink]="['/dashuser']" id="editlink" class="showAnchor">Add/Edit</a>
+									<a [routerLink]="['/dashuser']"  id="submitlink"class="hideAnchor">Submit</a></div>
+							</div>
+							<div>
+								<label>Emails</label>
+								<input type="text"  name="email" class="text-input hideborder" value = "prateekbhardwaj793@gmail.com" readonly="true" />
+								<div class="editbtn"><a [routerLink]="['/dashuser']" id="editlink" class="showAnchor">Add/Edit</a>
+									<a [routerLink]="['/dashuser']" id="submitlink" class="hideAnchor">Submit</a></div>
+							</div>	
+							<div>
+								<label>Interests</label>
+								<input type="text" name="email" class="text-input hideborder" value = "IPs,VPNs,Whatsappp" readonly="true" />
+								<div class="editbtn"><a [routerLink]="['/dashuser']" id="editlink" class="showAnchor">Add/Edit</a>
+									<a [routerLink]="['/dashuser']" id="submitlink" class="hideAnchor">Submit</a></div>
+							</div>			
+						</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="graphdash">
+			<div class="graphhead"><h4>Activity Analysis </h4></div>
+			<canvas id="charts" width="400" height="300" ></canvas>
+		</div>
+
+		<div class="actiondash">
+			<div class="actionhead"><h4>Actions Details </h4></div>			
+			<div class="actiondetails">
+				<div class="actioncard">
+					<div class="cardimg">
+						<img src="assets/images/write_blog.jpg" />
+					</div>
+					<div class="cardtext">
+						<h5>Want To Add Your Content</h5>
+						<a [routerLink]="['/editblogs','addblog']" >Add Blog </a>
+					</div>
+				</div>
+
+				<div class="actioncard">
+					<div class="cardimg">
+							<img src="assets/images/write_blog.jpg" />
+					</div>
+					<div class="cardtext">
+							<h5>Do Actions On Prev Blogs</h5>
+							<a [routerLink]="['/editblogs','prevblog']">Prev Blog </a>
+					</div>
+				</div>
+				<div class="actioncard">
+					<div class="cardimg">
+							<img src="assets/images/write_blog.jpg" />
+					</div>
+					<div class="cardtext">
+							<h5>Don't Want To Present Here</h5>
+							<a [routerLink]="['/dashuser']" (click) = "onDeleteAccClick()">Delete Account</a>
+					</div>
+				</div>
+				<div class="actioncard">
+					<div class="cardimg">
+							<img src="assets/images/write_blog.jpg" />
+					</div>
+					<div class="cardtext">
+							<h5>Want To Contact FBIdHackers</h5>
+							<a [routerLink]="['/dashuser']" (click) = "onContactAdminClick()" >Contact Admin </a>
+					</div>
+				</div>
+			</div>							  	
+		</div>
+	</div>
+

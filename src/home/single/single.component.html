@@ -1,0 +1,68 @@
+<!-- Content -->
+<div class="content clearfix">
+    <!-- // <div class="content clearfix"></div> // -->
+
+    <!-- Main Content Wrapper -->
+    <div class="main-content-wrapper">
+        <!-- Main Content -->
+        <div class="main-content single">
+            <h2 class="post-title"> {{content.heading}} </h2>
+            <div class="post-info">
+                <div>
+                    <fa-icon [icon]="['fab','blogger']"></fa-icon>
+                    <h5>By {{content.author}} </h5>
+                </div>
+                <div>
+                    <fa-icon [icon]="['far','calendar-alt']"></fa-icon>
+                    <h5>Posted On : {{content.created_tm | date:'longDate'}}</h5>
+                </div>
+            </div>
+
+            <div class="post-content">
+
+                <div><img src="{{content.imagesrc}}" class="post_image" alt="Post Image" /></div>
+                <div class = "fetched" id = "para_content" [innerHTML] = "content.content" ></div>
+            </div>
+        </div>
+        <!-- // Main Content -->
+    </div>
+    <!-- // Main Content Wrapper -->
+
+    <div class="sidebar single">
+
+        <div class="section facebook">
+            <h2 class="section-title">Our Social Page</h2>
+            &nbsp;
+            <div class="fb-page" data-href="https://www.facebook.com/FB-id-Hackers-516495818456939/" data-tabs=""
+                data-width="" data-height="" data-small-header="false" data-adapt-container-width="true"
+                data-hide-cover="false" data-show-facepile="true">
+                <blockquote cite="https://www.facebook.com/FB-id-Hackers-516495818456939/"
+                    class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/FB-id-Hackers-516495818456939/">FB
+                        id Hacker&#039;s</a></blockquote>
+            </div>
+        </div>
+
+        <div class="section related">
+            <h2 class="section-title">Related Post</h2>
+
+            <div class="post clearfix">
+                <img src="assets/images/BlogArt1.jpg" alt="">
+                <a [routerLink]="['/single']" class="title">
+                    <h4>Wifi Attacks on Home Network</h4>
+                </a>
+            </div>
+            <div class="post clearfix">
+                <img src="assets/images/BlogArt2.jpg" alt="">
+                <a [routerLink]="['/single']" class="title">
+                    <h4>Wifi Attacks on Home Network</h4>
+                </a>
+            </div>
+            <div class="post other-posts"><a [routerLink]="['/bloglist']" class="title">
+                    <h5>Read More Posts</h5>
+                </a></div>
+
+        </div>
+
+
+    </div>
+</div>

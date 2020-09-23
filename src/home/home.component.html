@@ -1,0 +1,104 @@
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width , initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Blog</title>
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Candal|Lora&display=swap" rel="stylesheet"> 
+
+	<!-- Custom styles & js -->
+	
+	<script type="text/javascript" src="src/assets/js/scripts.js"></script>
+	
+</head>
+<header [class.hidden] = "hideHeader" [style.height.px]="isHomeRoute?homeHeader:otherHeader" >
+	<div id="followUs" [class.hidden]="hide">
+		<div class="leftSpace"></div>
+		<div class="iconSpace">
+		<ul class="icons-follow">
+			<li><b>Follow us</b></li>
+			<li><a href="#"><fa-icon [icon]="['fab','facebook']"></fa-icon></a></li>
+			<li><a href="#"><fa-icon [icon]="['fab','twitter']"></fa-icon></a></li>
+			<li><a href="#"><fa-icon [icon]="['fab','youtube']"></fa-icon></a></li>
+			<li><a href="#"><fa-icon [icon]="['fab','linkedin']"></fa-icon></a></li>
+			<li><a href="#"><fa-icon [icon]="['fab','telegram']"></fa-icon></a></li>
+			<li><a href="#"><fa-icon [icon]="['fab','whatsapp']"></fa-icon></a></li>
+		</ul>
+	</div>
+	</div>
+	<div class="mainNav" id="mainNav">
+  		<div class="logo">
+			<img src = "assets/images/fbidhackers_icon.png" alt="FBH"/>
+		    <h2 class="logo-text"><a [routerLink]="['/index']" >FB ID Hackers Blog</a></h2>
+		</div>
+		<fa-icon [icon]="['fas','bars']" id="menu-toggle"></fa-icon>
+		<ul class = "nav">
+      		<li><a [routerLink]="['/index']" >Home</a></li>
+			<li><a [routerLink]="['/bloglist']" >PC Hacks</a></li>
+			<li><a [routerLink]="['/bloglist']" >Social Hacks</a></li>
+			<li><a [routerLink]="['/bloglist']" >Mobile Hacks</a></li>
+			<li><a [routerLink]="['/bloglist']" >OS Hacks</a></li>
+			<li>
+      		<a [routerLink]="['/dashuser']">
+				<fa-icon [icon]="['fas','user']"></fa-icon>
+       			Hello! {{ username }}</a></li>				<!-- First Name Only -->
+    	</ul>
+	</div>
+	<div class="recent-ads" [class.hidden] = "hide">
+		<p style="color: black;font-size: small;text-align: center;margin: 0px;"> 
+		Recent Ads And Subscriptions</p>
+	</div>
+</header>
+
+<router-outlet></router-outlet>
+
+<div class="footer" [class.hidden]="hide">
+	<div class="footer-content">
+		<div class="footer-section about">
+			<h2 class="logo-text">FB ID Hackers Blog</h2>
+			<p>
+				<b>FB ID Hackers Blog </b>is a comprehensive and enhanced blogspot for ethical hacking enthusiasts. 
+				It is built for newcomers and most common readers of the cyber security issues.
+
+			</p>
+			<div class="contact">
+				<span><fa-icon [icon]="['fas','phone']"></fa-icon> &nbsp; 123-456-7890</span>
+				<span><fa-icon [icon]="['fas','envelope-open-text']"></fa-icon> &nbsp; info@fbidhackers.com</span>
+			</div>
+			<br>
+			<div class="socials">
+			<!-- 	<a href="#"><i class="fab fa-facebook"></i></a>
+				<a href="#"><i class="fab fa-instagram"></i></a>
+				<a href="#"><i class="fab fa-twitter"></i></a>
+				<a href="#"><i class="fab fa-youtube"></i></a>
+			 --></div>
+
+		</div>
+
+		<div class="footer-section links">
+			<h2>Quick Links</h2>
+			<ul>
+				<li><a href="#">Events</a></li>
+				<li><a href="#">Team</a></li>
+				<li><a href="#">Sponsors</a></li>
+				<li><a href="#">Gallery</a></li>
+				<li><a href="#">Terms and Conditions</a></li>
+			</ul>
+		</div>
+
+		<div class="footer-section contact-form">
+			<h2>Contact Us</h2>
+			<form #contactForm = "ngForm" (ngSubmit)="onMailSubmit(contactForm)">
+				<!-- <input type="email" name="email" class="text-input contact-input" placeholder="Write Email Here ..."> -->
+				<textarea  name = "message" rows="4" class="text-input contact-input" (focus) = "onAreaInput($event)" placeholder="Write Message  And Name Here ..." ngModel ></textarea>
+				<button class="btn btn-message" type="submit"><fa-icon [icon]="['fas','envelope']"></fa-icon>&nbsp; Send</button>
+			</form>
+
+		</div>
+	</div>
+	<div class="footer-bottom">
+		&copy; fbidhackers.com | Designed By Prateek bhardwaj
+	</div>
+
+</div>

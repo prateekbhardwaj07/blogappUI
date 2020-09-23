@@ -1,0 +1,42 @@
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width , initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Login</title>
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Candal|Lora&display=swap" rel="stylesheet"> 
+
+	<script type="text/javascript" src="src/assets/js/scripts.js"></script>
+
+</head>
+<body>
+
+    <div class="auth-content">
+        <form   id="registerForm" #registerFrom="ngForm"  (ngSubmit) = "onRegisterUser(registerFrom)" >
+            <h2 class="form-title">Register</h2>
+            <div>
+                <label>Username</label>
+                <input id="username" type="text" name="username" class="text-input" required ngModel>
+            </div>
+            <div>
+                <label>Email</label>
+                <input id="useremail" type="email" name="email" class="text-input" >
+            </div>
+            <div>
+                <label>Password</label>
+                <input id="firstpass" type="password" name="password" class="text-input" minlength="8" ngModel>
+            </div>
+            <div>
+                <label>Password Confirmation</label>
+                <input id="secondpass"  type="password" name="passwordConf" class="text-input" minlength="8"  (focusout) = "checkRePassword()" ngModel>
+            </div>
+            <div>
+                <button type = "submit" name = "register" class="btn"  [disabled]="!registerFrom.valid" >Register</button>
+                <p>Or <a [routerLink] ="['/login']" >SignIn</a></p>
+            </div>
+        </form>
+    </div>
+    
+    
+    </body>
