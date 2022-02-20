@@ -40,18 +40,28 @@
 
             </div>
             <div class="div_textarea">
-                <form id="post_form" #postForm="ngForm" (ngSubmit)="onPostDataSubmit(postForm)" novalidate>
+                <form id="post_form" #postForm="ngForm" (ngSubmit)="onPostDataSubmit(postForm)" enctype="multipart/form-data" novalidate>
                     <label> Heading for Post</label>
                     <input type="text" name="post_heading" id="input_head" required ngModel>
+                    <div *ngIf="!postForm.controls.post_heading?.valid && (postForm.controls.post_heading?.dirty || postForm.controls.post_heading?.touched)" class="error">
+                        <div *ngIf="postForm.controls.post_heading.errors.required">
+                            Post Heading Required
+                        </div>
+                    </div>
                     <label> Post Author</label>
                     <input type="text" name="author" id="input_name" required ngModel>
+                    <div *ngIf="!postForm.controls.author?.valid && (postForm.controls.author?.dirty || postForm.controls.author?.touched)" class="error">
+                        <div *ngIf="postForm.controls.author.errors.required">
+                            Author Name Required
+                        </div>
+                    </div>
                     <label>Content for Post</label>
                     <textarea class="posttext" rows="4"  name="post_content" placeholder="Write something here..." ngModel></textarea>
                     <label>Image for Post</label>
                     <input type="file" name="post_image" accept = "image/*" id="input_img" (change) = "onfileselect($event)" ngModel>
                     <label for="blog_category">Select Categories for Blog</label>
                     <select id="category_options" name="category_name" ngModel>
-                        <option value="select" selected>Select One Category</option>
+                        <option [ngValue]="null" disabled>Select One Category</option>
                         <option value="Facebook">Facebook</option>
                         <option value="whatsapp">whatsapp</option>
                         <option value="pchacks">PC Hacks</option>
@@ -62,7 +72,7 @@
                         <option value="Twitter">Twitter</option>
                         <option value="networksec">Network Security</option>
                     </select>
-                    <input type="submit" name="submit_btn" value="Submit Data" id="submit_btn"  [disabled]="!userForm.valid" >
+                    <button type="submit" name="submit_btn" id="submit_btn" class="btn"  [disabled]="!postForm.valid">Submit</button>
                 </form>
             </div>
 
@@ -83,18 +93,18 @@
                         <th>Created On</th>
                         <th>Action</th>
                     </tr>
-                    <tr *ngFor = 'let post of posts'>
-                        <td>{{post.post_id}}</td>
-                        <td>{{ppst.heading}}</td>
+                    <tr *ngFor = 'let post of visiblePosts'>
+                        <td>{{post.pid}}</td>
+                        <td>{{post.heading}}</td>
                         <td>{{post.author}}</td>
-                        <td>{{post.created_tm}}</td>
+                        <td>{{post.created_tm | date}}</td>
                         <td><a [routerLink] = "['/deletePosts']">Delete</a></td>
                     </tr>
                 </table>
 
                 <div class="load-btn">
-                    <form id="load-articles" action="/" method="post">
-                        <button class="btn btn-loadmore" type="submit"><i class="fas fa-angle-double-down"></i></button>
+                    <form id="load-posts" #nextPostsForm="ngForm" (ngSubmit)="loadMorePosts()">
+                        <button class="btn btn-loadmore" type="submit"><fa-icon [icon]='faAngleDoubleDown'></fa-icon></button>
                     </form>
                 </div>
 

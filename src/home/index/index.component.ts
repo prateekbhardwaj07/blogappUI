@@ -1,15 +1,15 @@
-import { Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PostOutlineService } from "../services/post-outline.service";
 import { SlickCarouselComponent } from "ngx-slick-carousel";
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { faUserCircle, faCalendar } from '@fortawesome/free-regular-svg-icons';
-import { formatDate, JsonPipe } from '@angular/common';
+import { formatDate } from '@angular/common';
 import * as $ from 'jquery';
-import { catchError } from 'rxjs/operators'
 import { PostOutline } from '../model/PostOutline';
 import { NgForm } from '@angular/forms';
 import { CommonService } from '../services/common.service';
-import { newArray } from '@angular/compiler/src/util';
+import { BaseEntity } from '../model/BaseEntity';
+import { LocalStorageService } from '../services/local-storage.service';
 
 
 
@@ -26,16 +26,17 @@ export class IndexComponent implements OnInit {
 	faCalender = faCalendar;
 	hits: number = 0;
 	clickedElement: any;
-	onMailSubmitMsg: string;
+	onMailSubmitMsg: BaseEntity;
 	navArray = [];
 	public postoutlinetrends:PostOutline[];
 	public postoutlinerecents:PostOutline[];
 	public postsNavArr:number[] = [];
-	public postsNavIndex :number;
+	public postsNavIndex:number;
 
 	@ViewChild('slickModal', { static: true }) slickModal: SlickCarouselComponent;   // static corresponds to resolving of query results before change detection runs.
 
-	constructor(private _postoutlineService: PostOutlineService, private _commonService: CommonService) { }
+	constructor(private _postoutlineService: PostOutlineService, private _commonService: CommonService
+		,private localStorage:LocalStorageService) { }
 
 	ngOnInit(): void {
 
@@ -52,7 +53,9 @@ export class IndexComponent implements OnInit {
 		);
 
 		this._postoutlineService.getPostsRowsCountDB().subscribe(
-			(data) => { this.initialiseNavArrVar(data[0].response) },
+			(data) => { console.log(data);
+				this.initialiseNavArrVar(data);
+			},
 			(error) => { console.log('Error: $error.status + $error.statusText') }
 		);
 
@@ -173,12 +176,20 @@ export class IndexComponent implements OnInit {
 
 	/* Fetching Recent Posts Using Offset From Page Number */
 	fetchRecentPostByPage(pageNumber: string) {
+		console.log("fetching with offset"+pageNumber);
 		this._postoutlineService.setRecentPostsOffset(pageNumber);
 		this._postoutlineService.getRecentPosts().subscribe(
 			(data) => { this.postoutlinerecents = data },
 			(error) => { console.log(error, "Error Occurred") }
 		);
 
+	}
+
+	/* local Storage Save Post ID */
+
+	savePostIdStorage(post_id:string){
+		var ifStored = this.localStorage.storeOnLocalStorage(post_id);
+		console.log('StoredInLocal Returned with ',ifStored);
 	}
 
 	navigateTo(event: any) {
@@ -200,7 +211,7 @@ export class IndexComponent implements OnInit {
 					if (activeLinkValue > this.postsNavArr[0]) {
 						activeLinkNode.classList.remove("is-active");
 						activeLinkNode.previousElementSibling.classList.add("is-active");
-						this.fetchRecentPostByPage((activeLinkValue - 1).toString());
+						this.fetchRecentPostByPage((5*(activeLinkValue-2<0?0:activeLinkValue-2)).toString());
 					}
 					if(activeLinkValue == this.postsNavArr[0]){
 						if(this.postsNavIndex == 0){
@@ -219,7 +230,7 @@ export class IndexComponent implements OnInit {
 					if (activeLinkValue < this.postsNavArr[this.postsNavArr.length-1]) {
 						activeLinkNode.classList.remove("is-active");
 						activeLinkNode.nextElementSibling.classList.add("is-active");
-						this.fetchRecentPostByPage((activeLinkValue + 1).toString());
+						this.fetchRecentPostByPage((5*(activeLinkValue)).toString());
 					}
 					if(activeLinkValue == this.postsNavArr[this.postsNavArr.length-1]){
 						if(this.postsNavIndex == this.navArray.length){
@@ -244,7 +255,7 @@ export class IndexComponent implements OnInit {
 					if (activeLinkValue > this.postsNavArr[0]) {
 						activeLinkNode.classList.remove("is-active");
 						activeLinkNode.previousElementSibling.classList.add("is-active");
-						this.fetchRecentPostByPage((activeLinkValue - 1).toString());
+						this.fetchRecentPostByPage((5*(activeLinkValue-2<0?0:activeLinkValue-2)).toString());
 					}
 					if(activeLinkValue == this.postsNavArr[0]){
 						if(this.postsNavIndex == 0){
@@ -264,7 +275,7 @@ export class IndexComponent implements OnInit {
 					if (activeLinkValue < this.postsNavArr[this.postsNavArr.length-1]) {
 						activeLinkNode.classList.remove("is-active");
 						activeLinkNode.nextElementSibling.classList.add("is-active");
-						this.fetchRecentPostByPage((activeLinkValue + 1).toString());
+						this.fetchRecentPostByPage((5*(activeLinkValue)).toString());
 					}
 					if(activeLinkValue == this.postsNavArr[this.postsNavArr.length-1]){
 						if(this.postsNavIndex == this.navArray.length){
@@ -289,7 +300,7 @@ export class IndexComponent implements OnInit {
 					// run method for numbered posts
 					activeLinkNode.classList.remove("is-active");
 					currentLinkNode.classList.add("is-active");
-					this.fetchRecentPostByPage((numValue).toString());
+					this.fetchRecentPostByPage((5*(numValue-1)).toString());
 				}
 			}
 		}
@@ -308,7 +319,9 @@ export class IndexComponent implements OnInit {
 		)
 		if (this.onMailSubmitMsg != null) {
 			alert('Hello User $(this.onMailSubmitMessage)');
+			console.log(this.onMailSubmitMsg.message);
 		}
+
 	}
 
 

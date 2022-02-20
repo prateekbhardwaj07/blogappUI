@@ -14,7 +14,7 @@
                 <textarea class="posttext" rows="4" name="Post_Text" placeholder="Write something here..." ngModel ></textarea>
                 <label>Image for Post</label>
                 <input type="file" name="Post_Image" id="input_img" ngModel>
-                <input type="submit" name="submit_btn" value="Submit Data" id="submit_btn" [disbaled]="!editForm.valid" >
+                <button type="submit" name="submit_btn" id="submit_btn"  class="btn" [disabled]="!editForm.valid">Submit Data</button>
             </form>
         </div>
 

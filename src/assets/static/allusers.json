@@ -1,0 +1,24 @@
+[
+    {
+        "message": null,
+        "uid": 1,
+        "username": "prateek.bhardwaj71",
+        "password": "password",
+        "email": "prateek.bhardwaj71@yahoo.com",
+        "user_role": "Admin",
+        "interests": null,
+        "arr_time": null,
+        "is_subscribed": false
+    },
+    {
+        "message": null,
+        "uid": 2,
+        "username": "sameer07",
+        "password": "sameer02",
+        "email": "sameer269@gmail.com",
+        "user_role": "Admin",
+        "interests": null,
+        "arr_time": null,
+        "is_subscribed": false
+    }
+]

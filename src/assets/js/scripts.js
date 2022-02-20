@@ -74,6 +74,7 @@ function checkPass(){
 	if(pass1.localeCompare(pass2) != 0)
 	{
 		alert('Passwords Do Not Match');
+		
 	}
 }
 

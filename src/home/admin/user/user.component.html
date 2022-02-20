@@ -40,23 +40,43 @@
 
             </div>
             <div class="div_textarea">
-                <form id="post_form" #userForm="ngForm" (ngSubmit)="onAddUser(userForm" )>
+                <form id="post_form" #userForm="ngForm" (ngSubmit)="onUserSubmit(userForm)" novalidate>
                     <label for="username">UserName</label>
-                    <input id="username" name="username" type="text" required ngModel>
+                    <input id="username" name="user_name" type="text" required ngModel>
+                    <div *ngIf="!userForm.controls.user_name?.valid && (userForm.controls.user_name?.dirty || userForm.controls.user_name?.touched)"
+                        class="error">
+                        <div *ngIf="userForm.controls.user_name.errors.required">
+                            First Name is required
+                        </div>
+                    </div>
                     <label for="password">Password</label>
-                    <inout id="password" name="password" type="password" required ngModel>
-                        <label> User Type</label>
-                        <select id="user_options" name="user_type" ngModel>
-                            <option value="select" selected="">Select</option>
-                            <option value="admin">Admin</option>
-                            <option value="editor">Editor</option>
-                            <option value="author">Author</option>
-                        </select>
-                        <label for="Interests">Interests</label>
-                        <input type="text" name="interests" id="input_interests"
-                            placeholder="Enter Comma Separated Interests" ngModel>
-                        <input type="submit" name="submit_btn" value="Submit Data" id="submit_btn"
-                            [disabled]="!userForm.valid" >
+                    <input id="password" name="password" type="password" minlength="8" required ngModel>
+                    <div *ngIf="!userForm.controls.password?.valid && (userForm.controls.password?.dirty || userForm.controls.password?.touched)"
+                        class="error">
+                        <div *ngIf="userForm.controls.password.errors.required">
+                            Password is required
+                        </div>
+                        <div *ngIf="userForm.controls.password.errors.minlength">
+                            Minimum 8 characters
+                        </div>
+                    </div>
+                    <label> User Type</label>
+                    <select id="user_options" name="user_type" ngModel>
+                        <option [ngValue]="null" disabled>Select</option>
+                        <option value="admin">Admin</option>
+                        <option value="editor">Editor</option>
+                        <option value="author">Author</option>
+                    </select>
+                    <label for="Interests">Interests</label>
+                    <input type="text" name="interests" id="input_interests"
+                        placeholder="Enter Comma Separated Interests" pattern="[a-zA-Z]{1}(,[a-zA-Z])*$" ngModel>
+                    <div *ngIf="!userForm.controls.interests?.valid && (userForm.controls.interests?.dirty || userForm.controls.interests?.touched)"
+                        class="error">
+                        <div *ngIf="userForm.controls.interests.errors.pattern">
+                            Incorrect pattern
+                        </div>
+                    </div>
+                    <button type="submit" name="submit_btn" id="submit_btn" class="btn" [disabled]="!userForm.valid">Submit</button>
                 </form>
             </div>
 
@@ -71,22 +91,24 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
+                        <th>EmailID</th>
                         <th>User Type</th>
                         <th>Created On</th>
                         <th>Action</th>
                     </tr>
-                    <tr *ngFor='let user of users'>
-                        <td>{{user.id}}</td>
+                    <tr *ngFor='let user of visibleusers'>
+                        <td>{{user.uid}}</td>
                         <td>{{user.username}}</td>
-                        <td>{{user.user_type}}</td>
-                        <td>{{user.arrival_tm}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.user_role}}</td>
+                        <td>{{user.arr_time | date}}</td>
                         <td><a [routerLink]="['/deleteUser']">Delete</a></td>
                     </tr>
                 </table>
 
                 <div class="load-btn">
-                    <form id="load-articles" action="/" method="post">
-                        <button class="btn btn-loadmore" type="submit"><i class="fas fa-angle-double-down"></i></button>
+                    <form id="load-articles" (ngSubmit)="loadMoreUser()">
+                        <button class="btn btn-loadmore" type="submit"><fa-icon [icon]='faAngleDoubleDown'></fa-icon></button>
                     </form>
                 </div>
 

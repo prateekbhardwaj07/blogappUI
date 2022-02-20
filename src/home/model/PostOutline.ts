@@ -1,16 +1,18 @@
 import { formatDate } from '@angular/common';
+import { post } from 'jquery';
+import { BaseEntity } from './BaseEntity';
 
-export class PostOutline {
-
-    message:string;
+export class PostOutline extends BaseEntity {
+    pid:number;
     heading:string;
     author:string;
     relatedtxt:string;
     created_tm:number;
     imagesrc:string;
 
-    constructor(message:string,heading:string,author:string,relatedtxt:string,created_tm:number,imagesrc:string){
-        this.message = message;
+    constructor(message:object,pid:number,heading:string,author:string,relatedtxt:string,created_tm:number,imagesrc:string){
+        super(message);
+        this.pid = pid;
         this.heading = heading;
         this.author = author;
         this.relatedtxt = relatedtxt;

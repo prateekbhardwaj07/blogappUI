@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { PostOutline } from 'src/home/model/PostOutline';
 
 @Component({
   selector: 'app-editblogs',
@@ -11,12 +13,14 @@ export class EditblogsComponent implements OnInit {
   hideAddDiv = false;
   hidePrevDiv = false;
   action:string = "";
+  posts:PostOutline[];
 
   constructor(private _Activatedroute:ActivatedRoute){
       
   }
 
   ngOnInit(): void {
+
     this._Activatedroute.paramMap.subscribe(params => {
       this.action = params.get("action");
       if(this.action === "addblog") {
@@ -29,6 +33,12 @@ export class EditblogsComponent implements OnInit {
       }
     });
     console.log(this.action+" "+this.hideAddDiv+" "+this.hidePrevDiv);
+
+    //fetch the posts from DB via http call 
+  }
+
+  onEditSubmit(editForm:NgForm){
+    console.log(editForm.valid);
   }
 
 }

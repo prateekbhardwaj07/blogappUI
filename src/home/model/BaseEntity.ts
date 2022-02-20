@@ -1,6 +1,6 @@
 export class BaseEntity{
-    message:string;
-    constructor(message:string){
+    message:object;
+    constructor(message:object){
         this.message = message;
     }
 }

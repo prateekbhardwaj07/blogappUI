@@ -1,152 +1,82 @@
-
 <!-- Page Wrapper -->
-<div class = "page-wrapper">
+<div class="page-wrapper">
 	<!-- Content -->
-	<div class="content clearfix">							<!-- // <div class="content clearfix"></div> // -->
-		
+	<div class="content clearfix">
+		<!-- // <div class="content clearfix"></div> // -->
+
 		<!-- Main Content -->
 		<div class="main-content categories">
 			<h1 class="recent-post-title category_name">OS Hacks</h1>
-
-			<div class="post clearfix"> 
-					<img class="post-image" src="assets/images/BlogArt1.jpg" alt=""/>
-					<div class="post-preview">
-						<h2><a [routerLink]="['/single']" >Personal WIFI Attacks Redressal</a></h2>
-						<fa-icon [icon]="['far','user-circle']" aria-hidden="true"></fa-icon> Prateek
-						&nbsp;
-						<fa-icon [icon]="['far','calender']" ></fa-icon> Oct 17 2019
-						<p class="preview-text">cksnklnclk bklsnlkncl nksanlkmlmd nklsnklml;m nklsnkcm;lm nnskaknl;ml nxklnlkms bvldb nvmanndkl bvjabdvlk bjkasbk basnkln bvksnklan ...
+			<div *ngFor="let post of visiblePosts" class="post clearfix">
+				<img class="post-image" src="{{post.imagesrc}}" alt="" />
+				<div class="post-preview">
+					<h2><a [routerLink]="['/single']" [state]="{ post_id: post.pid }">{{post.heading}}</a></h2>
+					<fa-icon [icon]='faUserCircle' aria-hidden="true"></fa-icon> {{post.author}}
+					&nbsp;
+					<fa-icon [icon]='faCalender'></fa-icon> {{post.created_tm|date:'mediumDate'}}
+					<p class="preview-text">{{post.relatedtxt}}
 						<a [routerLink]="['/single']" class="read-more">read more</a></p>
-					</div>
-			</div>	
-
-			<div class="post clearfix"> 
-					<img class="post-image" src="assets/images/BlogArt2.jpg" alt=""/>
-					<div class="post-preview">
-						<h2><a [routerLink]="['/single']" >Banking Transactions Common Hacks</a></h2>
-						<fa-icon [icon]="['far','user-circle']" aria-hidden="true"></fa-icon> Prateek
-						&nbsp;
-						<fa-icon [icon]="['far','calender']" ></fa-icon> Oct 17 2019
-						<p class="preview-text">cksnklnclk bklsnlkncl nksanlkmlmd nklsnklml;m nklsnkcm;lm nnskaknl;ml nxklnlkms bvldb nvmanndkl bvjabdvlk bjkasbk basnkln bvksnklan  ...
-						<a [routerLink]="['/single']"  class="read-more">read more</a></p>
-					</div>
+				</div>
 			</div>
 
-			<div class="post clearfix"> 
-					<img class="post-image" src="assets/images/BlogArt1.jpg" alt=""/>
-					<div class="post-preview">
-						<h2><a [routerLink]="['/single']" >Personal WIFI Attacks Redressal</a></h2>
-						<fa-icon [icon]="['far','user-circle']" aria-hidden="true"></fa-icon> Prateek
-						&nbsp;
-						<fa-icon [icon]="['far','calender']" ></fa-icon> Oct 17 2019
-						<p class="preview-text">cksnklnclk bklsnlkncl nksanlkmlmd nklsnklml;m nklsnkcm;lm nnskaknl;ml nxklnlkms bvldb nvmanndkl bvjabdvlk bjkasbk basnkln bvksnklan  ...
-						<a [routerLink]="['/single']"  class="read-more">read more</a></p>
-					</div>
-			</div>
-
-			<div class="post clearfix"> 
-					<img class="post-image" src="assets/images/BlogArt2.jpg" alt=""/>
-					<div class="post-preview">
-						<h2><a [routerLink]="['/single']" >Banking Transactions Common Hacks</a></h2>
-						<fa-icon [icon]="['far','user-circle']" aria-hidden="true"></fa-icon> Prateek
-						&nbsp;
-						<fa-icon [icon]="['far','calender']" ></fa-icon> Oct 17 2019
-						<p class="preview-text">cksnklnclk bklsnlkncl nksanlkmlmd nklsnklml;m nklsnkcm;lm nnskaknl;ml nxklnlkms bvldb nvmanndkl bvjabdvlk bjkasbk basnkln bvksnklan  ...
-						<a [routerLink]="['/single']" ref = "single.html" class="read-more">read more</a></p>
-					</div>
-			</div>
-
-			<div class="post clearfix"> 
-					<img class="post-image" src="assets/images/BlogArt1.jpg" alt=""/>
-					<div class="post-preview">
-						<h2><a [routerLink]="['/single']" >Banking Transactions Common Hacks</a></h2>
-						<fa-icon [icon]="['far','user-circle']" aria-hidden="true"></fa-icon> Prateek
-						&nbsp;
-						<fa-icon [icon]="['far','calender']" ></fa-icon> Oct 17 2019
-						<p class="preview-text">cksnklnclk bklsnlkncl nksanlkmlmd nklsnklml;m nklsnkcm;lm nnskaknl;ml nxklnlkms bvldb nvmanndkl bvjabdvlk bjkasbk basnkln bvksnklan  ...
-						<a [routerLink]="['/single']"  class="read-more">read more</a></p>
-					</div>
-			</div>
-
-			<div class="post clearfix"> 
-					<img class="post-image" src="assets/images/BlogArt2.jpg" alt=""/>
-					<div class="post-preview">
-						<h2><a [routerLink]="['/single']" >Banking Transactions Common Hacks</a></h2>
-						<fa-icon [icon]="['far','user-circle']" aria-hidden="true"></fa-icon> Prateek
-						&nbsp;
-						<fa-icon [icon]="['far','calender']" ></fa-icon> Oct 17 2019
-						<p class="preview-text">cksnklnclk bklsnlkncl nksanlkmlmd nklsnklml;m nklsnkcm;lm nnskaknl;ml nxklnlkms bvldb nvmanndkl bvjabdvlk bjkasbk basnkln bvksnklan  ...
-						<a [routerLink]="['/single']"  class="read-more">read more</a></p>
-					</div>
-			</div>
-
-			<div class="post clearfix"> 
-					<img class="post-image" src="assets/images/BlogArt1.jpg" alt=""/>
-					<div class="post-preview">
-						<h2><a [routerLink]="['/single']" >Banking Transactions Common Hacks</a></h2>
-						<fa-icon [icon]="['far','user-circle']" aria-hidden="true"></fa-icon> Prateek
-						&nbsp;
-						<fa-icon [icon]="['far','calender']" ></fa-icon> Oct 17 2019
-						<p class="preview-text">cksnklnclk bklsnlkncl nksanlkmlmd nklsnklml;m nklsnkcm;lm nnskaknl;ml nxklnlkms bvldb nvmanndkl bvjabdvlk bjkasbk basnkln bvksnklan  ...
-						<a [routerLink]="['/single']"  class="read-more">read more</a></p>
-					</div>
-			</div>
-			
 			<div class="load-btn">
-				<form id="load-articles" action="bloglist.html" method="post" >
-					<button class="btn btn-loadmore" type="submit"><i class="fas fa-angle-double-down"></i></button>
+				<form id="load-articles" #nextArticlesForm="ngForm" (ngSubmit)="loadMoreActicle()">
+					<button class="btn btn-loadmore" type="submit">
+						<fa-icon [icon]='faAngleDoubleDown'></fa-icon>
+					</button>
 				</form>
 			</div>
-
-
 
 		</div>
 
 		<!-- //Main Content -->
 		<div class="sidebar">
-
-
-			
 			<div class="section other-category">
-					<h2 class="section-title">Related Categories</h2>
-					<div class="categorycard showing">
-						<div class="cardimg">
-							<img src="assets/images/pc_hacks.jpg" />
-						</div>
-						<div class="cardtext">
-							<a [routerLink] = "['/bloglist']"><h5>Find PCs Hacking Blogs Here</h5></a>
-						</div>
+				<h2 class="section-title">Related Categories</h2>
+				<div class="categorycard showing">
+					<div class="cardimg">
+						<img src="assets/images/pc_hacks.jpg" />
 					</div>
+					<div class="cardtext">
+						<a [routerLink]="['/bloglist']" [state]="{category_name:'pchacks'}">
+							<h5>Find PCs Hacking Blogs Here</h5>
+						</a>
+					</div>
+				</div>
 
-					<div class="categorycard showing">
-						<div class="cardimg">
-							<img src="assets/images/social_hacks.png" />
-						</div>
-						<div class="cardtext">
-							<a [routerLink] = "['/bloglist']" >
-								<h5>Find Social Media Hacking Blogs Here</h5>
-							</a>
-						</div>
+				<div class="categorycard showing">
+					<div class="cardimg">
+						<img src="assets/images/social_hacks.png" />
 					</div>
-					
-					<div class="categorycard showing">
-						<div class="cardimg">
-							<img src="assets/images/mobile_hacks.jpg" />
-						</div>
-						<div class="cardtext">
-							<a [routerLink] = "['/bloglist']"><h5>Find Mobile Phones Hacking Blogs Here</h5></a>
-						</div>
+					<div class="cardtext">
+						<a [routerLink]="['/bloglist']" [state]="{category_name:'socialhacks'}">
+							<h5>Find Social Media Hacking Blogs Here</h5>
+						</a>
 					</div>
-					
-					<div class="categorycard showing">
-						<div class="cardimg">
-							<img src="assets/images/os_hacks.png" />
-						</div>
-						<div class="cardtext">
-							<a [routerLink] = "['/bloglist']"><h5>Find Operating Systems Hacking Blogs Here</h5></a>
-						</div>
+				</div>
+
+				<div class="categorycard showing">
+					<div class="cardimg">
+						<img src="assets/images/mobile_hacks.jpg" />
 					</div>
-				
+					<div class="cardtext">
+						<a [routerLink]="['/bloglist']" [state]="{category_name:'mobilehacks'}">
+							<h5>Find Mobile Phones Hacking Blogs Here</h5>
+						</a>
+					</div>
+				</div>
+
+				<div class="categorycard showing">
+					<div class="cardimg">
+						<img src="assets/images/os_hacks.png" />
+					</div>
+					<div class="cardtext">
+						<a [routerLink]="['/bloglist']" [state]="{category_name:'oshacks'}">
+							<h5>Find Operating Systems Hacking Blogs Here</h5>
+						</a>
+					</div>
+				</div>
+
 			</div>
 
 
@@ -164,8 +94,6 @@
 		</div>
 
 	</div>
-	<!--// Content -->
+
+	<!-- //Content -->
 </div>
-
-<!-- // Page Wrapper -->
-

@@ -9,11 +9,13 @@ import { param } from 'jquery';
 })
 export class PostOutlineService {
 
-  private trendsUrl = 'assets/static/trendingposts.json';
-  private recentsUrl = 'assets/static/recentposts.json';
-  private postsrowscount = 'assets/static/postoutlinerows.json';
+  private trendsUrl = 'http://localhost:8080/gettrendposts';
+  private recentsUrl = 'http://localhost:8080/getrecentposts';
+  private postsrowscount = 'http://localhost:8080/getoutlinerowscount';
+  private categoryUrl = 'http://localhost:8080/getCategoryPosts';
   PostOutlineObj: PostOutline[];
-  params = new HttpParams();
+  postParams = new HttpParams();
+  categoryParams = new HttpParams();
 
 
 
@@ -24,20 +26,33 @@ export class PostOutlineService {
   }
 
   getRecentPosts(): Observable<PostOutline[]> {
-    return this.http.get<PostOutline[]>(this.recentsUrl, { 'params': this.params });
+    return this.http.get<PostOutline[]>(this.recentsUrl, { 'params': this.postParams });
   }
 
   getPostsRowsCountDB(): Observable<number> {
     return this.http.get<number>(this.postsrowscount);
   }
 
-  setRecentPostsOffset(offset: string) {
-    if (this.params.has('offset')) {
-      this.params.delete('offset');
-      this.params.append('offset', offset);
-    }
-    this.params = this.params.set("offset", offset);
+  getCategoryPosts(): Observable<PostOutline[]>{
+    return this.http.get<PostOutline[]>(this.categoryUrl,{'params':this.categoryParams});
   }
+
+  setRecentPostsOffset(offset: string) {
+    if (this.postParams.has('offset')) {
+      this.postParams.delete('offset');
+      this.postParams.append('offset', offset);
+    }
+    this.postParams = this.postParams.set("offset", offset);
+  }
+
+  setCategoryNameParam(category_name:string){
+    if (this.categoryParams.has('category_name')) {
+      this.categoryParams.delete('category_name');
+      this.categoryParams.append('category_name', category_name);
+    }
+    this.categoryParams = this.categoryParams.set('category_name', category_name);
+  }
+
 
   // http://localhost:8080/blogapp/gettrendposts
   // http://localhost:8080/blogapp/getrecentposts

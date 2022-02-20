@@ -9,9 +9,12 @@ import { AdminModule } from  './admin/admin.module';
 import { PostOutlineService } from './services/post-outline.service';
 import { CommonService } from './services/common.service';
 import { PostContentService } from './services/post-content.service';
+import { LocalStorageService } from './services/local-storage.service';
+import { authInterceptorProviders } from './utils/jwtTokenInterceptor';
+import { PostContentResolve } from './utils/PostContent-Resolve';
 
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import { SlickCarouselModule} from 'ngx-slick-carousel';
 import { IndexComponent } from './index/index.component';
 import { ChartsModule } from 'ng2-charts';
@@ -49,7 +52,7 @@ import { ParaTransform } from './para-transform.pipe';
     AdminModule,
     FacebookModule.forRoot()
   ],
-  providers: [PostOutlineService,PostContentService,CommonService],
+  providers: [PostOutlineService,PostContentService,CommonService,authInterceptorProviders,LocalStorageService,PostContentResolve],
   bootstrap: [HomeComponent]
 })
 export class HomeModule {

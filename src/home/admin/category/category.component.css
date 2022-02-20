@@ -2,7 +2,7 @@
 box-sizing: border-box;
 }
 html , body{
-	height: 100%;
+	min-height: 100%;
 	padding: 0px;
 	margin: 0px;
 	background: #f4f4f4;
@@ -14,6 +14,7 @@ html , body{
 	clear:both;	
 }
 .btn {
+	width:25px;
 	padding: .5rem 1rem;
 	color: white;
 	background: #35CE87;
@@ -63,6 +64,7 @@ header{
 	min-height: 100%;
 	display: inline-flex;
 	flex-direction: row;
+	background: #f4f4f4;
 }
 .hidden {
 	display: none;
@@ -162,7 +164,13 @@ header{
 .div_textarea #post_form #input_img{
 	border:none;
 }
-
+.div_textarea #post_form select {
+	width: auto;
+	height:25px;
+	margin: 10px 5px;
+	border:1px solid lightgrey;
+	outline: none !important;
+}
 
 .posttext {
 width: 600px;
@@ -184,9 +192,10 @@ border: solid 1px #ddd;
 }  
 
 .div_textarea #post_form #submit_btn {
-	width:20%;
-	height:25px;
-	font-style: 'Verdana',sans-serif;
+    width: 25%;
+    height: 40px;
+    margin: 20px 30%;
+    cursor: pointer;
 }
 .div_textarea #post_form #user_options {
 	width: auto;

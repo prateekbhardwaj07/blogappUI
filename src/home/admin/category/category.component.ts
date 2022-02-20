@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from '../../model/Category';
 import { AdminService } from "../../services/admin.service";
+import { faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-category',
@@ -14,7 +15,11 @@ export class CategoryComponent implements OnInit {
   hideForm = false;
   hideTable = false;
   action:string = "";
-  category:Category;
+  categoryList:Category[];
+  visibleCategories:Category[];
+  faAngleDoubleDown = faAngleDoubleDown;
+  length:number;
+  isManage:boolean;
 
   constructor(private _Activatedroute:ActivatedRoute,private _adminService:AdminService){
   }
@@ -37,9 +42,33 @@ export class CategoryComponent implements OnInit {
       else if ( this.action === "manage"){
         this.hideTable = false;
         this.hideForm = true;
+        this.getAllCategories();
       }
     });
-    console.log(this.action+" "+this.hideForm+" "+this.hideTable);
+
+    console.log('After Manage Function');
+    
+  }
+
+  getAllCategories(){
+    
+    this._adminService.getCategories().subscribe(
+      (data) => { this.categoryList = data,console.log(data) },
+      (error) => { console.log('Error occurred with status',error.status) },
+      () => { this.setVisibleValues(this.categoryList) }
+    );
+    
+  }
+
+  setVisibleValues(categories:Category[]){
+    this.length = categories.length;
+    console.log('Category List Length',length);
+    if(this.length > 5){
+      this.visibleCategories = categories.slice(0,5);
+    }
+    else{
+      this.visibleCategories = categories.slice(0,this.length);
+    }
 
   }
 
@@ -47,7 +76,6 @@ export class CategoryComponent implements OnInit {
     
     this._adminService.setCategoryParams(categoryForm.controls["category_name"].value,categoryForm.controls["keywords"].value,Date.now());
     
-    /* Post Call for Category Creation */
     this._adminService.createCategory().subscribe(
       (data) => {console.log(data)},
       (error) => {console.log(error.status)}
@@ -55,6 +83,16 @@ export class CategoryComponent implements OnInit {
     
   }
 
+  loadMoreCategories(){
+    
+    if(this.length > this.visibleCategories.length){
+      this.visibleCategories = this.categoryList.slice(0,this.length);
+    }
+    else{
+      console.log("Already Reached Last");
+    }
+
+  }
 
   
 }

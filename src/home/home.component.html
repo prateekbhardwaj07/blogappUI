@@ -18,7 +18,7 @@
 		<div class="iconSpace">
 		<ul class="icons-follow">
 			<li><b>Follow us</b></li>
-			<li><a href="#"><fa-icon [icon]="['fab','facebook']"></fa-icon></a></li>
+			<li><a href="https://www.facebook.com/FB-id-Hackers-516495818456939"><fa-icon [icon]="['fab','facebook']"></fa-icon></a></li>
 			<li><a href="#"><fa-icon [icon]="['fab','twitter']"></fa-icon></a></li>
 			<li><a href="#"><fa-icon [icon]="['fab','youtube']"></fa-icon></a></li>
 			<li><a href="#"><fa-icon [icon]="['fab','linkedin']"></fa-icon></a></li>
@@ -35,10 +35,10 @@
 		<fa-icon [icon]="['fas','bars']" id="menu-toggle"></fa-icon>
 		<ul class = "nav">
       		<li><a [routerLink]="['/index']" >Home</a></li>
-			<li><a [routerLink]="['/bloglist']" >PC Hacks</a></li>
-			<li><a [routerLink]="['/bloglist']" >Social Hacks</a></li>
-			<li><a [routerLink]="['/bloglist']" >Mobile Hacks</a></li>
-			<li><a [routerLink]="['/bloglist']" >OS Hacks</a></li>
+			<li><a [routerLink]="['/bloglist']" [state]="{category_name: categories[0]}">PC Hacks</a></li>
+			<li><a [routerLink]="['/bloglist']" [state]="{category_name: categories[1]}">Social Hacks</a></li>
+			<li><a [routerLink]="['/bloglist']" [state]="{category_name: categories[2]}">Mobile Hacks</a></li>
+			<li><a [routerLink]="['/bloglist']" [state]="{category_name: categories[3]}">OS Hacks</a></li>
 			<li>
       		<a [routerLink]="['/dashuser']">
 				<fa-icon [icon]="['fas','user']"></fa-icon>

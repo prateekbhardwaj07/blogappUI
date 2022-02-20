@@ -13,27 +13,37 @@
 <body>
 
 <div class="auth-content">
-	<form  id="loginForm" #loginForm="ngForm" (ngSubmit)="onLoginUser(loginForm)" >
+	<form  id="login_form" #loginForm="ngForm" (ngSubmit)="onLoginUser(loginForm)" >
 		<h2 class="form-title">Login</h2>
 		<div>
 			<label>Username</label>
 			<input type="text" name="username" class="text-input" required ngModel>
 		</div>
+		<div *ngIf="!loginForm.controls.username?.valid && (loginForm.controls.username?.dirty || loginForm.controls.username?.touched)" class="error">
+			<div *ngIf="loginForm.controls.username.errors.required">
+			  First Name is required
+			</div>
+		</div>
 		<div>
 			<label>Password</label>
 			<input type="Password" name="password" class="text-input" required ngModel>
 		</div>
+		<div *ngIf="!loginForm.controls.password?.valid && (loginForm.controls.password?.dirty || loginForm.controls.password?.touched)" class="error">
+			<div *ngIf="loginForm.controls.password.errors.required">
+				Password is required
+			</div>
+		</div>
 		<div>
 			<label>User Role</label>
 			<select id="user_options" name="user_type" class="text-input" required ngModel>
-				<option value="select" selected="">Select</option>
+				<option [ngValue] = "null" disabled >Select</option>
 				<option value="admin">Admin</option>
 				<option value="editor">Editor</option>
 				<option value="author">Author</option>
 			</select> 
 		</div>		
 		<div>
-			<button type = "submit" name = "login" class="btn" [disabled]="!loginFrom.valid" >Sign In</button>
+			<button type = "submit" name = "login" class="btn" [disabled]="!loginForm.valid" >Sign In</button>
 		</div>
 		<div>
 		<p>Not Registered <a [routerLink] = "['/register']" >Sign Up</a></p>

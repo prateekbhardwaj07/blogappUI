@@ -13,26 +13,47 @@
 <body>
 
     <div class="auth-content">
-        <form   id="registerForm" #registerFrom="ngForm"  (ngSubmit) = "onRegisterUser(registerFrom)" >
+        <form   id="register_form" #registerForm="ngForm" (ngSubmit) = "onRegisterUser(registerForm)">
             <h2 class="form-title">Register</h2>
             <div>
                 <label>Username</label>
                 <input id="username" type="text" name="username" class="text-input" required ngModel>
             </div>
+            <div *ngIf="!registerForm.controls.username?.valid && (registerForm.controls.username?.dirty || registerForm.controls.username?.touched)" class="error">
+                <div *ngIf="registerForm.controls.username.errors.required">
+                  UserName is required
+                </div>
+            </div>
             <div>
                 <label>Email</label>
-                <input id="useremail" type="email" name="email" class="text-input" >
+                <input id="useremail" type="email" name="email" class="text-input" email ngModel>
+            </div>
+            <div *ngIf="!registerForm.controls.email?.valid && (registerForm.controls.email?.dirty || registerForm.controls.email?.touched)" class="error">
+                Invalid Email ID
             </div>
             <div>
                 <label>Password</label>
-                <input id="firstpass" type="password" name="password" class="text-input" minlength="8" ngModel>
+                <input id="firstpass" type="password" name="password" class="text-input" minlength="8" required ngModel>
+            </div>
+            <div *ngIf="!registerForm.controls.password?.valid && (registerForm.controls.password?.dirty || registerForm.controls.password?.touched)" class="error">
+                <div *ngIf="registerForm.controls.password.errors.required">
+                    Password is required
+                </div>
+                <div *ngIf = "registerForm.controls.password.errors.minlength">
+                    Minimum 8 characters    
+                </div>
             </div>
             <div>
                 <label>Password Confirmation</label>
-                <input id="secondpass"  type="password" name="passwordConf" class="text-input" minlength="8"  (focusout) = "checkRePassword()" ngModel>
+                <input id="secondpass"  type="password" name="passwordConf" class="text-input" required (focusout) = "checkRePassword()" ngModel>
+            </div>
+            <div *ngIf="!registerForm.controls.passwordConf?.valid && (registerForm.controls.passwordConf?.dirty || registerForm.controls.passwordConf?.touched)" class="error">
+                <div *ngIf="registerForm.controls.passwordConf.errors.required">
+                    Password is required
+                </div>
             </div>
             <div>
-                <button type = "submit" name = "register" class="btn"  [disabled]="!registerFrom.valid" >Register</button>
+                <button type = "submit" name = "register" class="btn"  [disabled]="!registerForm.valid" >Register</button>
                 <p>Or <a [routerLink] ="['/login']" >SignIn</a></p>
             </div>
         </form>

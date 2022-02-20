@@ -1,5 +1,5 @@
-  
    .btn {
+	   width:100px;
        padding: .5rem 1rem;
        color: white;
        background: #35CE87;
@@ -358,7 +358,7 @@ POST SLIDER CSS
 }
 
 .content .main-content.single .post-title {
-	width: inherit;
+	width: auto;
 	font-size:x-large;
 	font-weight: normal;
 	margin-bottom: 10px;
@@ -844,14 +844,22 @@ POST SLIDER CSS
 }
 
 .auth-content form div {
-	margin-bottom: 20px; 
+	margin-bottom: 15px; 
+}
+
+.auth-content form div.error {
+    font-size: small;
+    background: white !important;
+    color: red !important;
+    margin: 0px;
+    padding-left: 2px;
 }
 
 .auth-content form div > label  {
 	font-size: small;
 	margin:2px;
 }
-.auth-content form div > label , input, select {
+.auth-content form div > label , input, select, button {
 	display: block;
 	width:95%;
 	height: auto;

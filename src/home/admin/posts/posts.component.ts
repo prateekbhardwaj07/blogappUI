@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { PostOutline } from 'src/home/model/PostOutline';
 import { AdminService } from "../../services/admin.service";
+import { faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-posts',
@@ -10,11 +12,14 @@ import { AdminService } from "../../services/admin.service";
 })
 export class PostsComponent implements OnInit {
 
-
+  faAngleDoubleDown = faAngleDoubleDown;
   hideForm = false;
   hideTable = false;
   action:string = "";
   postImage:File;
+  postsList:PostOutline[];
+  visiblePosts:PostOutline[];
+  length:number;
 
   constructor(private _Activatedroute:ActivatedRoute,private _adminService:AdminService){
   }
@@ -37,6 +42,7 @@ export class PostsComponent implements OnInit {
       else if ( this.action === "manage"){
         this.hideTable = false;
         this.hideForm = true;
+        this.getAllPosts();
       }
     });
     console.log(this.action+" "+this.hideForm+" "+this.hideTable);
@@ -52,7 +58,8 @@ export class PostsComponent implements OnInit {
 
     this._adminService.createPost(formdata).subscribe(
       (data)=>{console.log(data)},
-      (error)=>{console.log(error.status)}
+      (error)=>{console.log(error.status)},
+      ()=>{console.log('Complete')}
     );
     
   }
@@ -60,8 +67,39 @@ export class PostsComponent implements OnInit {
   onfileselect(event:any){
     if(event.target.files.length>0){
       var file = event.target.files[0];
-      file = this.postImage;
+      this.postImage = file;
+      console.log(this.postImage.name);
     }
   }
 
+  getAllPosts(){
+    
+    this._adminService.getPosts().subscribe(
+      (data) => { this.postsList = data,console.log(data) },
+      (error) => { console.log('Error occurred with status',error.status) },
+      () => { this.setVisibleValues(this.postsList) }
+    );
+    
+  }
+
+  setVisibleValues(posts:PostOutline[]){
+    this.length = posts.length;
+    console.log('Posts List Length',length);
+    if(this.length > 5){
+      this.visiblePosts = posts.slice(0,5);
+    }
+    else{
+      this.visiblePosts = posts.slice(0,this.length);
+    }
+    console.log(this.visiblePosts.length);
+  }
+
+  loadMorePosts(){
+    if(this.length > this.visiblePosts.length){
+      this.visiblePosts = this.postsList.slice(0,this.length);
+    }
+    else{
+      console.log("Already Reached Last");
+    }
+  }
 }

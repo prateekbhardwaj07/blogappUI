@@ -6,19 +6,19 @@
     <div class="main-content-wrapper">
         <!-- Main Content -->
         <div class="main-content single">
-            <h2 class="post-title"> {{content.heading}} </h2>
+            <h2 class="post-title" *ngIf="isLoaded"> {{content.heading}} </h2>
             <div class="post-info">
-                <div>
+                <div *ngIf="isLoaded">
                     <fa-icon [icon]="['fab','blogger']"></fa-icon>
                     <h5>By {{content.author}} </h5>
                 </div>
-                <div>
+                <div *ngIf="isLoaded">
                     <fa-icon [icon]="['far','calendar-alt']"></fa-icon>
                     <h5>Posted On : {{content.created_tm | date:'longDate'}}</h5>
                 </div>
             </div>
 
-            <div class="post-content">
+            <div class="post-content" *ngIf="isLoaded">
 
                 <div><img src="{{content.imagesrc}}" class="post_image" alt="Post Image" /></div>
                 <div class = "fetched" id = "para_content" [innerHTML] = "content.content" ></div>

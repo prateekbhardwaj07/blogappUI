@@ -1,8 +1,11 @@
 import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import * as $ from "jquery";
-import { Router, NavigationStart } from '@angular/router';
+import { Router, NavigationStart} from '@angular/router';
 import { CommonService } from '../home/services/common.service'
 import { NgForm } from '@angular/forms';
+import { LocalStorageService } from './services/local-storage.service';
+
+export let browserRefresh = false;
 
 @Component({
   selector: 'app-root',
@@ -20,9 +23,10 @@ export class HomeComponent implements OnInit,OnDestroy {
   homeHeader = '90';
   otherHeader = '45';
   pageWithMessage:string;
+  categories:string[] = ["pchacks","socialhacks","mobilehacks","oshacks"];
 
 
-  constructor(private router:Router,private _commonService: CommonService){
+  constructor(private router:Router,private _commonService: CommonService,private localStorage:LocalStorageService){
   }
 
   ngOnInit(): void {
@@ -59,6 +63,7 @@ export class HomeComponent implements OnInit,OnDestroy {
   }
 
   ngOnDestroy():void{
+    this.localStorage.deleteOnSessionEnd();
   }
 
   onMailSubmit(contactForm:NgForm){
