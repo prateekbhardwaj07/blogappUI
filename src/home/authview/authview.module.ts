@@ -6,19 +6,18 @@ import { faUser,faBars }from '@fortawesome/free-solid-svg-icons';
 import { AuthviewRoutingModule } from './authview-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { EditblogsComponent } from './editblogs/editblogs.component';
 import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [RegisterComponent, LoginComponent, EditblogsComponent],
+  declarations: [RegisterComponent, LoginComponent],
   imports: [
     CommonModule,
     FormsModule,
     AuthviewRoutingModule,
     FontAwesomeModule
   ],  
-  exports: [LoginComponent, RegisterComponent,EditblogsComponent]
+  exports: [LoginComponent, RegisterComponent]
 })
 export class AuthviewModule {
   constructor(library:FaIconLibrary){

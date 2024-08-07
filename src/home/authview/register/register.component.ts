@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User, usertypes } from 'src/home/model/User';
-import { AdminService } from 'src/home/services/admin.service';
 declare const checkPass : any;
 
 @Component({
@@ -31,8 +29,6 @@ export class RegisterComponent implements OnInit {
       'username':username,
       'email':email,
       'password':password,
-      'role_id':(Object.keys(usertypes).indexOf('AUTHOR')+1),
-      'interests':'',
       'arr_time':new Date().getTime(),
       'is_subscribed':false
     };
